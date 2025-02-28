@@ -1,0 +1,20 @@
+﻿@using DHL.Shared
+@using System.Net.Http
+@using System.Net.Http.Json
+
+
+@page "/fetchdata"
+
+<h3>Data z API</h3>
+<p>@apiMessage</p>
+
+@code {
+    private string apiMessage = "Načítání...";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var http = new HttpClient { BaseAddress = new Uri("https://localhost:5001/") };
+        var response = await http.GetFromJsonAsync<DataModel>("api/data");
+        apiMessage = response?.Message ?? "Chyba při načítání dat.";
+    }
+}

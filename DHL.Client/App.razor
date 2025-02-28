@@ -1,12 +1,17 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using DHL.Client.Shared
+
+<Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        <FocusOnNavigate RouteData="@routeData">
+            <PageTitle>My Blazor App</PageTitle>
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </FocusOnNavigate>
     </Found>
     <NotFound>
-        <PageTitle>Not found</PageTitle>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
-        </LayoutView>
+        <PageTitle>Page Not Found</PageTitle>
+        <h3>Stránka nebyla nalezena.</h3>
     </NotFound>
 </Router>
+
+
